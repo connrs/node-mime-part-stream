@@ -46,3 +46,19 @@ test('Image/png base64 encoding', function (t) {
   });
   stream.end('YOUREALLYSHOULDPRETENDTHATTHISISANIMAGE ');
 });
+
+test('Content-Disposition header', function (t) {
+  var output = '';
+  var expected = 'Content-Type: image/png\r\nContent-Disposition: attachment; filename=potato.jpg\r\nContent-Transfer-Encoding: base64\r\n\r\nWU9VUkVBTExZU0hPVUxEUFJFVEVORFRIQVRUSElTSVNBTklNQUdFIA==\r\n';
+  var stream = mimePartStream({type: 'image/png', transferEncoding: 'base64', disposition: 'attachment; filename=potato.jpg'});
+
+  stream.on('end', function () {
+    t.equal(output, expected);
+    t.end();
+  });
+  stream.on('data', function (data) {
+    output += data.toString();
+  });
+  stream.end('YOUREALLYSHOULDPRETENDTHATTHISISANIMAGE ');
+  
+});
