@@ -3,7 +3,7 @@
     "node": ">= 0.10"
   },
   "name": "mime-part-stream",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Transform an input stream to a single part of an overall multipart MIME message",
   "main": "lib/mime-part-stream.js",
   "scripts": {
@@ -21,7 +21,8 @@
   "license": "http://www.apache.org/licenses/LICENSE-2.0.txt",
   "dependencies": {
     "quoted-printable-stream": "0.0.1",
-    "base64-stream": "~0.1.2"
+    "base64-stream": "~0.1.2",
+    "mime-headers": "0.0.1"
   },
   "devDependencies": {
     "tape": "~1.0.4"
