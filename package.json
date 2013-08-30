@@ -28,7 +28,7 @@
     "quoted-printable-stream": "0.0.1",
     "base64-stream": "~0.1.2",
     "mime-headers": "0.0.1",
-    "stream-stream": "~1.2.2"
+    "sandwich-stream": "0.0.3"
   },
   "devDependencies": {
     "tape": "~1.0.4"
