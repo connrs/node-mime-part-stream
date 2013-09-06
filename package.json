@@ -3,7 +3,7 @@
     "node": ">= 0.10"
   },
   "name": "mime-part-stream",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "Transform an input stream to a single part of an overall multipart MIME message",
   "main": "lib/mime-part-stream.js",
   "scripts": {
@@ -27,7 +27,7 @@
   "dependencies": {
     "quoted-printable-stream": "0.0.1",
     "mime-headers": "0.0.1",
-    "sandwich-stream": "0.0.3",
+    "sandwich-stream": "0.0.4",
     "mime-base64-stream": "0.0.1"
   },
   "devDependencies": {
