@@ -51,6 +51,22 @@ test('Image/png base64 encoding', function (t) {
   body.end('YOUREALLYSHOULDPRETENDTHATTHISISANIMAGE ');
 });
 
+test('Text html no encoding', function (t) {
+  var output = '';
+  var expected = 'Content-Type: text/html; charset=UTF-8\r\n\r\n<html><body><div class="qp">Hello world!</div></body></html>\r\n';
+  var body = new PassThrough();
+  var mimePart = mimePartStream({type: 'text/html; charset=UTF-8', body: body});
+
+  mimePart.on('end', function () {
+    t.equal(output, expected);
+    t.end();
+  });
+  mimePart.on('data', function (data) {
+    output += data.toString();
+  });
+  body.end('<html><body><div class="qp">Hello world!</div></body></html>');
+});
+
 test('Content-Disposition header', function (t) {
   var output = '';
   var expected = 'Content-Type: image/png\r\nContent-Disposition: attachment; filename=potato.jpg\r\nContent-Transfer-Encoding: base64\r\n\r\nWU9VUkVBTExZU0hPVUxEUFJFVEVORFRIQVRUSElTSVNBTklNQUdFIA==\r\n';
