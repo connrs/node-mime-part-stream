@@ -18,5 +18,6 @@ When initialising a new stream, there are 2 options available in the options obj
 
 * type: this should be a valid MIME type eg. `'text/plain; charset=UTF-8'` or `'application/pdf'`
 * transferEncoding: `base64` and `quoted-printable` are the 2 available options
+* length: set the `Content-Length` header
 
 Note that you should append '; charset=UTF-8' with any text/ MIME-types
