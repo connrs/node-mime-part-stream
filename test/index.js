@@ -67,11 +67,11 @@ test('Content-Disposition header', function (t) {
   body.end('YOUREALLYSHOULDPRETENDTHATTHISISANIMAGE ');
 });
 
-test('Content-Length header', function (t) {
+test('Arbitrary headers', function (t) {
   var output = '';
-  var expected = 'Content-Type: image/png\r\nContent-Transfer-Encoding: base64\r\nContent-Length: 40\r\n\r\nWU9VUkVBTExZU0hPVUxEUFJFVEVORFRIQVRUSElTSVNBTklNQUdFIA==\r\n';
+  var expected = 'Content-Type: image/png\r\nContent-Transfer-Encoding: base64\r\nX-Custom-Header: here\r\nX-Custom-Header-2: si\r\n\r\nWU9VUkVBTExZU0hPVUxEUFJFVEVORFRIQVRUSElTSVNBTklNQUdFIA==\r\n';
   var body = new PassThrough();
-  var mimePart = mimePartStream({type: 'image/png', transferEncoding: 'base64', length: 40, body: body});
+  var mimePart = mimePartStream({type: 'image/png', transferEncoding: 'base64', headers: { 'X-Custom-Header': 'here', 'X-Custom-Header-2': 'si' }, body: body});
 
   mimePart.on('end', function () {
     t.equal(output, expected);
