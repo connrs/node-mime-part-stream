@@ -82,3 +82,19 @@ test('Content-Disposition header', function (t) {
   });
   body.end('YOUREALLYSHOULDPRETENDTHATTHISISANIMAGE ');
 });
+
+test('Arbitrary headers', function (t) {
+  var output = '';
+  var expected = 'Content-Type: image/png\r\nContent-Transfer-Encoding: base64\r\nX-Custom-Header: here\r\nX-Custom-Header-2: si\r\n\r\nWU9VUkVBTExZU0hPVUxEUFJFVEVORFRIQVRUSElTSVNBTklNQUdFIA==\r\n';
+  var body = new PassThrough();
+  var mimePart = mimePartStream({type: 'image/png', transferEncoding: 'base64', headers: { 'X-Custom-Header': 'here', 'X-Custom-Header-2': 'si' }, body: body});
+
+  mimePart.on('end', function () {
+    t.equal(output, expected);
+    t.end();
+  });
+  mimePart.on('data', function (data) {
+    output += data.toString();
+  });
+  body.end('YOUREALLYSHOULDPRETENDTHATTHISISANIMAGE ');
+});
